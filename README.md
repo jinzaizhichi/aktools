@@ -1,33 +1,35 @@
+**《AKShare-初阶-使用教学》视频课程已经上线，本课程手把手讲解 AKShare 和 AKTools 的环境配置和安装使用，还包含了众多衍生知识，[详情点击链接](https://zmj.xet.tech/s/wck86)! Tips：加入 AKShare VIP 答疑群可以免费获取该视频课程。**
+
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/akshare.svg)](https://pypi.org/project/akshare/)
 [![PyPI](https://img.shields.io/pypi/v/aktools.svg)](https://pypi.org/project/aktools/)
 [![Downloads](https://pepy.tech/badge/aktools)](https://pepy.tech/project/aktools)
-[![Documentation Status](https://readthedocs.org/projects/aktools/badge/?version=master)](https://aktools.readthedocs.io/?badge=master)
+[![Documentation Status](https://readthedocs.org/projects/aktools/badge/)](https://aktools.akfamily.xyz/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![aktools](https://img.shields.io/badge/Data%20Science-AKShare-green)](https://github.com/akfamily/aktools)
 [![Actions Status](https://github.com/akfamily/aktools/workflows/build/badge.svg)](https://github.com/akfamily/aktools/actions)
 [![MIT Licence](https://camo.githubusercontent.com/14a9abb7e83098f2949f26d2190e04fb1bd52c06/68747470733a2f2f626c61636b2e72656164746865646f63732e696f2f656e2f737461626c652f5f7374617469632f6c6963656e73652e737667)](https://github.com/akfamily/aktools/blob/master/LICENSE)
-[![](https://img.shields.io/github/forks/jindaxiang/aktools)](https://github.com/akfamily/aktools)
-[![](https://img.shields.io/github/stars/jindaxiang/aktools)](https://github.com/akfamily/aktools)
-[![](https://img.shields.io/github/issues/jindaxiang/aktools)](https://github.com/akfamily/aktools)
+[![](https://img.shields.io/github/forks/akfamily/aktools)](https://github.com/akfamily/aktools)
+[![](https://img.shields.io/github/stars/akfamily/aktools)](https://github.com/akfamily/aktools)
+[![](https://img.shields.io/github/issues/akfamily/aktools)](https://github.com/akfamily/aktools)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 # AKTools
 
-AKTools is a package of HTTP API for AKShare! It depends on AKShare and FastAPI.
+AKTools is a package of HTTP API for AKShare! It depends on AKShare, FastAPI and Typer.
 
-[AKTools](https://github.com/akfamily/aktools) 是一款用于快速搭建 HTTP API 的工具，利用 [AKTools](https://github.com/akfamily/aktools)
-您可以用一行命令来启动 HTTP 服务，从而让原本专属服务于 Python 用户的开源财经数据接口库 [AKShare](https://github.com/akfamily/akshare) 的使用
-突破编程语言的限制。无论您使用的是 C/C++、Java、Go、Ruby、PHP、JavaScript、R、Matlab、Stata 等编程语言或软件都可以快速、轻松获取财经数据，助力您更好地开展研究工作。
+[AKTools](https://github.com/akfamily/aktools) 是一款用于快速搭建 [AKShare](https://github.com/akfamily/akshare) HTTP API 的工具，通过 [AKTools](https://github.com/akfamily/aktools)
+可以利用一行命令来启动 HTTP 服务，从而让原本专属服务于 Python 用户的开源财经数据接口库 [AKShare](https://github.com/akfamily/akshare) 的使用
+突破编程语言的限制。无论您使用的是 C/C++、Java、Go、Ruby、PHP、JavaScript、R、Matlab、Stata 等编程语言或软件都可以快速、轻松获取财经数据，助力您更好地展开研究和开发工作。
 
 **[AKTools 中文文档](https://aktools.readthedocs.io/)**
 
 ## Installation
 
 ```shell
-pip install aktools  # AKTools's version should great than 0.0.70
+pip install aktools
 ```
 
-or
+## Upgrade
 
 ```shell
 pip install aktools --upgrade -i https://pypi.org/simple  # AKTools's version should great than 0.0.70
@@ -41,11 +43,16 @@ pip install aktools --upgrade -i https://pypi.org/simple  # AKTools's version sh
 
 [Please visit FastAPI's Documentation](https://fastapi.tiangolo.com/)
 
+## Typer
+
+[Please visit Typer's Documentation](https://typer.tiangolo.com/)
+
 ## Fast Run
 
 1. just type the cmd/bash command: `python -m aktools`
-2. then type `http://127.0.0.1:8080/api/public/stock_zh_a_hist` in your Chrome and you can fetch your data
-3. if you want to set parameter for API, then you just type like `http://127.0.0.1:8080/api/public/stock_zh_a_hist?symbol=600000`
+2. then type `http://127.0.0.1:8080/` in your Chrome and you can fetch your homepage and more information
+3. if you just want to test data api, you can type `http://127.0.0.1:8080/api/public/stock_zh_a_hist` in your Chrome
+4. if you want to set parameter for API, then you just type like `http://127.0.0.1:8080/api/public/stock_zh_a_hist?symbol=600000`
 
 ## Homepage
 
@@ -82,7 +89,7 @@ inner_df <- fromJSON(temp_df)
 inner_df
 ```
 
-Result
+R-Result
 
 ```
          日期    开盘    收盘    最高    最低      成交量     成交额    振幅  涨跌幅  涨跌额 换手率
@@ -123,7 +130,7 @@ data = webread(url, options, symbol = '000001', period = 'daily', start_date = '
 data % 由于 MATLAB 无法显示中文字段名，请自行修改为英文字段，参考链接：http://iso2mesh.sourceforge.net/cgi-bin/index.cgi?jsonlab/Doc/Examples
 ```
 
-Result
+MATLAB-Result
 
 ```
 '2021-11-09'	3009.83000000000	3017.96000000000	3037.46000000000	2974.07000000000	1240573	2163193120.00000	2.11000000000000	0.600000000000000	17.8800000000000	0.640000000000000

@@ -2,14 +2,34 @@
 
 ## 开发目标
 
-1. 提供 AKShare 的 HTTP API
+1. 提供 AKShare 的 HTTP API 核心功能
 2. 提供多线程访问功能
 3. 增加接口状态码支持
 4. 增加接口用户认证
 5. 增加用户自定义数据接口功能
 6. 增加主页及增强命令行支持
+7. 增加测试支持
+8. 增加 SQLite 数据库支持
 
 ## 开发进度
+
+0.0.83: fix: fix Dockerfile
+
+0.0.82: fix: fix connection.py
+
+0.0.81: add: add support for Python 3.11
+
+0.0.80: fix: fix uvicorn run command
+
+0.0.79: fix: fix typos in homepage.html
+
+0.0.78: add: add test_cli.py
+
+    1. 增加测试文件，增加项目的稳健型
+
+0.0.77: add: add cli.py file
+
+0.0.76: fix: fix rename master to main
 
 0.0.75: add: add version interface
 

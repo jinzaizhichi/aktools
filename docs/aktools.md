@@ -25,14 +25,14 @@
 
 ### 一键安装
 
-```shell
-pip install aktools  # 安装的版本需大于 0.0.70
+```sh
+pip install aktools  # 安装的版本需大于 0.0.81
 ```
 
 如上述方法不能升级到最新版，请参照如下方法升级：
 
-```shell
-pip install aktools --upgrade -i https://pypi.org/simple  # 安装的版本需大于 0.0.70
+```sh
+pip install aktools --upgrade -i https://pypi.org/simple  # 安装的版本需大于 0.0.81
 ```
 
 ### 查看版本
@@ -91,7 +91,7 @@ print(at.__version__)
 
 #### 代码
 
-```shell
+```sh
 library(RCurl)  # 需要先安装该包
 library(jsonlite)  # 需要先安装该包
 options (warn = -1)  # 该行有助于在无参数请求时去掉 warning 信息
@@ -183,28 +183,46 @@ data % 由于 MATLAB 无法显示中文字段名，请自行修改为英文字�
 
 ### 下载镜像
 
-```shell
+```sh
 # docker pull registry.cn-shanghai.aliyuncs.com/akfamily/aktools:[AKShare 的版本号]
-docker pull registry.cn-shanghai.aliyuncs.com/akfamily/aktools:1.3.93
+docker pull registry.cn-shanghai.aliyuncs.com/akfamily/aktools:1.8.95
 ```
 
 ### 启动镜像
 
+#### 高性能模式
+
+高性能模式为镜像启动后的默认模式，其主要是启动 Gunicorn 作为 WSGI 服务器，提高网络处理的性能，更多资料请[参考](https://gunicorn.org/)
+
 常规方式运行：
 
-```shell
-docker run -p 8080:8080 registry.cn-shanghai.aliyuncs.com/akfamily/aktools:1.3.93 python -m aktools --host 0.0.0.0 --port 8080
+```sh
+docker run -p 8080:8080 registry.cn-shanghai.aliyuncs.com/akfamily/aktools:1.8.95
 ```
 
 后台运行：
 
-```shell
-docker run -di -p 8080:8080 registry.cn-shanghai.aliyuncs.com/akfamily/aktools:1.3.93 python -m aktools --host 0.0.0.0 --port 8080
+```sh
+docker run -d -p 8080:8080 registry.cn-shanghai.aliyuncs.com/akfamily/aktools:1.8.95
+```
+
+#### 普通模式
+
+常规方式运行：
+
+```sh
+docker run -p 8080:8080 registry.cn-shanghai.aliyuncs.com/akfamily/aktools:1.8.95 python -m aktools --host 0.0.0.0 --port 8080
+```
+
+后台运行：
+
+```sh
+docker run -d -p 8080:8080 registry.cn-shanghai.aliyuncs.com/akfamily/aktools:1.8.95 python -m aktools --host 0.0.0.0 --port 8080
 ```
 
 ### 本次访问
 
-```shell
+```sh
 http://127.0.0.1:8080/api/public/stock_zh_a_hist
 ```
 
@@ -212,10 +230,16 @@ http://127.0.0.1:8080/api/public/stock_zh_a_hist
 
 **目前通过 `docker pull registry.cn-shanghai.aliyuncs.com/akfamily/aktools:[AKShare 的版本号]` 拉取的镜像已经默认安装最新的 AKShare [AKShare 的版本号] 版本**，以下步骤仅供参考：
 
-1. 重新打镜像标签：`docker tag registry.cn-shanghai.aliyuncs.com/akfamily/aktools:1.3.93 ak_tools:1.3.93`
-2. 启动镜像并进入命令行模型：`docker run -it ak_tools:1.3.93 bash` 
+1. 重新打镜像标签：`docker tag registry.cn-shanghai.aliyuncs.com/akfamily/aktools:1.8.95 ak_tools:1.8.95`
+2. 启动镜像并进入命令行模型：`docker run -it ak_tools:1.8.95 /bin/bash` 
 3. 升级 [AKShare](https://github.com/akfamily/akshare) 到最新版：`pip install akshare --upgrade -i https://pypi.org/simple`
 4. 退出镜像：`exit`
 5. 找到容器 ID：`docker ps -a`
-6. 提交修改：`docker commit -m "update akshare to latest" a07c8632637f ak_tools:1.3.94` 其中 `a07c8632637f` 为第 5 步骤中的容器 ID，`ak_tools:1.3.94` 为新镜像的名字和版本
-7. 利用构建好的新镜像启动新容器：`docker run -p 8080:8080 ak_tools:1.3.94 python -m aktools --host 0.0.0.0 --port 8080`
+6. 提交修改：`docker commit -m "update akshare to latest" a07c8632637f ak_tools:1.8.96` 其中 `a07c8632637f` 为第 5 步骤中的容器 ID，`ak_tools:1.8.96` 为新镜像的名字和版本
+7. 利用构建好的新镜像启动新容器：`docker run -p 8080:8080 ak_tools:1.3.96`
+
+### 本地构造镜像及使用
+
+可以通过 Dockerfile 文件进行本地镜像的构造，通过下载仓库中：https://github.com/akfamily/aktools/blob/main/Dockerfile 文件到本地后，通过 `docker build -t aktools:v1 .`
+命令来构建镜像，并通过 `docker run -p 8080:8080 aktools:v1` 来启动镜像，如需要后台运行则通过 `docker run -d -p 8080:8080 aktools:v1` 来进行启动。最后通过访问 `http://127.0.0.1:8080/api/public/stock_zh_a_hist`
+进行测试，如果可以获取到数据则本地镜像构建及使用成功！

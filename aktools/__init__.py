@@ -78,8 +78,16 @@ Changelog
 0.0.73: fix: fix tips
 0.0.74: add: add typer for CLI
 0.0.75: add: add version interface
+0.0.76: fix: fix rename master to main
+0.0.77: add: add cli.py file
+0.0.78: add: add test_cli.py
+0.0.79: fix: fix typos in homepage.html
+0.0.80: fix: fix uvicorn run command
+0.0.81: add: add support for Python 3.11
+0.0.82: fix: fix connection.py
+0.0.83: fix: fix Dockerfile
 """
 
 __title__ = "AKTools"
-__version__ = "0.0.75"
+__version__ = "0.0.83"
 __author__ = "AKFamily"
